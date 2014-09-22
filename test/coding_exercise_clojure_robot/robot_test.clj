@@ -1,8 +1,6 @@
-(ns coding-exercise-clojure-robot.core-test
+(ns coding-exercise-clojure-robot.robot-test
   (:require [midje.sweet :refer :all]
-            [coding-exercise-clojure-robot.core :refer :all]))
-
-
+            [coding-exercise-clojure-robot.robot :refer :all]))
 
 (fact "Robots can be placed"
 
