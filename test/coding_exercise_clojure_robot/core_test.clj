@@ -1,7 +1,18 @@
 (ns coding-exercise-clojure-robot.core-test
-  (:require [clojure.test :refer :all]
+  (:require [midje.sweet :refer :all]
             [coding-exercise-clojure-robot.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+
+(fact "Robots can be placed"
+
+      (place 3 2 :NORTH) => { :x 3 :y 2 :f :NORTH }
+      
+      )
+
+(fact "Robots can be moved"
+
+      (->> (place 0 0 :NORTH) (move)) => { :x 0 :y 1 :f :NORTH }
+
+      )
+
+(fact "Robots don't fall off the table")
