@@ -3,6 +3,7 @@
             [coding-exercise-clojure-robot.core :refer :all]))
 
 
+
 (fact "Robots can be placed"
 
       (place 3 2 :NORTH) => { :x 3 :y 2 :f :NORTH }
@@ -33,6 +34,24 @@
 
       )
 
+(fact "Clamp"
+      (clamp 0 1 4) => 1
+      (clamp 0 -1 4) => 0
+      (clamp 0 5 4) => 4
+      )
+
+(fact "Robots can't be placed off the table"
+
+      (place -1 -1 :NORTH) => {:x 0 :y 0 :f :NORTH}
+      (place 55 55 :NORTH) => {:x 4 :y 4 :f :NORTH}
+
+      )
+
+(fact "Robots don't move off the table"
+
+      (->> (place 0 0 :SOUTH) (move)) => {:x 0 :y 0 :f :SOUTH}
+      (->> (place 4 4 :NORTH) (move)) => {:x 4 :y 4 :f :NORTH}
+      
+      )
 
 
-(fact "Robots don't fall off the table")
