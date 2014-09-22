@@ -18,6 +18,22 @@
    :y (+ y (:dy (heading f)))
    :f f})
 
+(defn left
+  "Rotate the robot to the left"
+  [{:keys [x y f]}]
+  {:x x
+   :y y
+   :f (:left (heading f))}
+  )
+
+(defn right
+  "Rotate the robot to the right"
+  [{:keys [x y f]}]
+  {:x x
+   :y y
+   :f (:right (heading f))}
+  )
+
 (defn -main
   "I don't do a whole lot ... yet."
   [& args]
