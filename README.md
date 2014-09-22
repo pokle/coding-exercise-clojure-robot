@@ -19,6 +19,8 @@ Run 'lein run' with the command file as an argument, like in these examples:
 
 ## Tests
 
+[![Circle CI](https://circleci.com/gh/pokle/coding-exercise-clojure-robot.png?style=badge)](https://circleci.com/gh/pokle/coding-exercise-clojure-robot)
+
 You can run the unit tests like so:
 
     > lein midje
