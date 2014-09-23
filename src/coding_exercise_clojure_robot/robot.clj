@@ -1,11 +1,25 @@
-(ns coding-exercise-clojure-robot.robot
-  (:gen-class))
+(ns coding-exercise-clojure-robot.robot)
 
-(def heading {:NORTH { :dx  0  :dy  1  :right :EAST   :left :WEST }
-              :EAST  { :dx  1  :dy  0  :right :SOUTH  :left :NORTH }
-              :SOUTH { :dx  0  :dy -1  :right :WEST   :left :EAST }
-              :WEST  { :dx -1  :dy  0  :right :NORTH  :left :SOUTH }})
+(def move-delta
+  "Table of delta moves based on heading"
+  {:NORTH { :dx  0  :dy  1 }
+   :EAST  { :dx  1  :dy  0 }
+   :SOUTH { :dx  0  :dy -1 }
+   :WEST  { :dx -1  :dy  0 }})
 
+(def right-of
+  "Answer's the question: what's to the right of"
+  {:NORTH :EAST
+   :EAST  :SOUTH
+   :SOUTH :WEST
+   :WEST  :NORTH})
+
+(def left-of
+  "Answers the question: what's the left of"
+  {:NORTH :WEST
+   :EAST  :NORTH
+   :SOUTH :EAST
+   :WEST  :SOUTH})
 
 (defn clamp
   "Ensures that value remains within the bounds of min and max"
@@ -20,8 +34,7 @@
   [{:keys [x y f]}]
   {:x (clamp 0 x 4)
    :y (clamp 0 y 4)
-   :f f}
-  )
+   :f f})
 
 (defn place
   "Places the robot on a 5x5 grid"
@@ -30,25 +43,18 @@
 
 (defn move
   "Moves the robot one cell in the direction it is currently facing"
-  [{:keys [x y f]}]
-  (guard  {:x (+ x (:dx (heading f)))
-           :y (+ y (:dy (heading f)))
-           :f f}))
+  [robot]
+  (guard  (assoc robot
+            :x (+ (:x robot) (:dx (move-delta (:f robot))))
+            :y (+ (:y robot) (:dy (move-delta (:f robot)))))))
 
 (defn left
   "Rotate the robot to the left"
-  [{:keys [x y f]}]
-  {:x x
-   :y y
-   :f (:left (heading f))}
-  )
+  [robot]
+  (assoc robot :f (left-of (:f robot))))
 
 (defn right
   "Rotate the robot to the right"
-  [{:keys [x y f]}]
-  {:x x
-   :y y
-   :f (:right (heading f))}
-  )
-
+  [robot]
+  (assoc robot :f (right-of (:f robot))))
 
