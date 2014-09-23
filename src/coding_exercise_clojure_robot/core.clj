@@ -10,14 +10,14 @@
     (if line
       (recur (next lines)
              (condp re-find line
-               #"PLACE +(\d+),(\d+),([A-Z]+)" :>> (fn [[ m x y f]]
+               #"PLACE +(\d+) *, *(\d+) *, *([A-Z]+)" :>> (fn [[_ x y f]]
                                                     (place (Integer/parseInt  x)
                                                            (Integer/parseInt y)
                                                            (keyword f)))
-               #"MOVE"   (move robot)
-               #"RIGHT"  (right robot)
-               #"LEFT"   (left robot)
-               #"REPORT" (do (println robot) robot)
+               #"MOVE"   (when robot (move robot))
+               #"RIGHT"  (when robot (right robot))
+               #"LEFT"   (when robot (left robot))
+               #"REPORT" (when robot (do (println robot) robot))
                robot ; ignore all else
                )))))
 
