@@ -9,13 +9,13 @@ You'll need Java and Leiningen installed.
 Run 'lein run' with the command file as an argument, like in these examples:
 
     > lein run test/sample-a.txt
-    {:x 0, :y 1, :f :NORTH}
+    0,1,NORTH
 
     > lein run test/sample-b.txt
-    {:x 0, :y 0, :f :WEST}
+    0,0,WEST
 
     > lein run test/sample-c.txt
-    {:x 3, :y 3, :f :NORTH}
+    3,3,NORTH
 
 ## Tests
 
