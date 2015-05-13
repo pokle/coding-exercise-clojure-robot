@@ -27,3 +27,5 @@ You can run the unit tests like so:
     All checks (17) succeeded.
 
 
+----
+[My other coding exercises](https://github.com/search?q=user%3Apokle+coding-exercise)
